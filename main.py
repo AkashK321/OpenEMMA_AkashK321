@@ -26,7 +26,9 @@ from llava.utils import disable_torch_init
 from llava.mm_utils import tokenizer_image_token, process_images, get_model_name_from_path
 from llava.conversation import conv_templates
 
-client = OpenAI(api_key="[your-openai-api-key]")
+client = None
+if os.getenv("OPENAI_API_KEY") is not None:
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 OBS_LEN = 10
 FUT_LEN = 10
